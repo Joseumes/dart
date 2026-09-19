@@ -74,10 +74,10 @@ void main() {
   double descuento1 = 0.0;
   switch (tipoCliente) {
     case 'estudiante':
-      descuento1 = 0.10; // 10% de descuento
+      descuento1 = 0.10; 
       break;
     case 'docente':
-      descuento1 = 0.15; // 15% de descuento
+      descuento1 = 0.15; 
       break;
     case 'visitante':
       descuento1 = 0.0;
@@ -95,16 +95,37 @@ void main() {
 
   double descuentoCupon = (cupon != null && cupones.containsKey(cupon))
       ? cupones[cupon]!
-      : 0.0;
+      : 0.0;  
+  print("Descuento Cupon $descuentoCupon");
+  
+  
+  double descuentoCupon1= 0;
+  if (cupon != null){
+    if (cupones.containsKey(cupon)){
+      descuentoCupon1=cupones[cupon]?? 0;
+    }
+  }
+ 
+    print("Descuento Cupon $descuentoCupon1");
+  
+
+  
+  
 
   // TODO 5: calcular el porcentaje total de descuento.
   double porcentajeDescuento = descuentoCliente + descuentoCupon;
+  print("porcentajeDescuento $porcentajeDescuento");
 
   // TODO 6: calcular el valor monetario del descuento.
   double valorDescuento = subtotal * porcentajeDescuento;
+  double descuentofactura=total1*porcentajeDescuento;
+  
+  print("Valor del descuento $descuentofactura");
 
   // TODO 7: calcular el subtotal después del descuento.
   // double subtotalConDescuento = subtotal - valorDescuento;
+  double subtotal1 = total1 - descuentofactura;
+  print ("El subtotal con descunto es $subtotal1");
 
   // TODO 9: llamar a calcularTotal con parámetros nombrados (calcula total con IVA incluido).
   double total = calcularTotal(
@@ -112,9 +133,13 @@ void main() {
     porcentajeDescuento: porcentajeDescuento,
     porcentajeIva: porcentajeIva,
   );
+  
+  print("Total : $total");
 
   // TODO 8: calcular el IVA (sobre el subtotal ya descontado).
   double impuesto = (subtotal - valorDescuento) * porcentajeIva;
+  double iva = (subtotal1)*porcentajeIva;
+  print("El impuesto del iva es de ${iva.toStringAsFixed(2)}");
 
   // El dato dynamic cambia de String a int.
   referenciaPago = 45892;
@@ -124,7 +149,12 @@ void main() {
   final categorias = <String>{};
   for (var producto in productos) {
     categorias.add(producto['categoria'] as String);
+    
+
   }
+  print("Estas son las categorias $categorias");
+  
+  
 
   // TODO 11: mostrar la factura.
   mostrarFactura(
@@ -145,6 +175,11 @@ void main() {
   print('Categorías: $categorias');
 
   // TODO 12: usar if para mostrar un mensaje especial.
+  if (total > 350){
+    print("COMPRA MAYOR A $total feliciadades recibe envio gratuito" );
+  }
+  
+  
   if (compraFinalizada && total > 200) {
     print(
       '¡Felicidades! Tu compra califica para envío gratis dentro del campus.',
